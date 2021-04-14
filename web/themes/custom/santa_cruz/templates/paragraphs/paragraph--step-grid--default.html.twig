@@ -1,0 +1,18 @@
+{% set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_id,
+  'paragraph--id--' ~ paragraph.id()|clean_id,
+  'grid-container',
+  'large',
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_id,
+  not paragraph.isPublished() ? 'paragraph--unpublished',
+  'steps'
+] %}
+
+{% block paragraph %}
+  <section{{ attributes.addClass(classes) }} aria-label="content row">
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </section>
+{% endblock paragraph %}
